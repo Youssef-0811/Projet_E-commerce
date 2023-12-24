@@ -100,10 +100,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form class="login-form" method="post">
       <h2>Register</h2>
       <?php
-      // Display the error message if it's set
       if (isset($_SESSION['error_message'])) {
         echo "<p style='color: red; margin-top: 0;'>" . $_SESSION['error_message'] . "</p>";
-        unset($_SESSION['error_message']); // Clear the session variable
+        unset($_SESSION['error_message']);
       }
       ?>
       <label for="username">Username:</label>

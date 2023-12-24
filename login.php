@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $host = "localhost";
   $username = "root";
-  $db_password = ""; // Changed the variable name to avoid conflict
+  $db_password = ""; 
   $database = "register";
 
   $conn = new mysqli($host, $username, $db_password, $database);
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: Produits.html");
     exit();
   } else {
-    // Set an error message
+    
     $error_message = "Invalid Username or Password";
   }
 
@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form class="login-form" method="post">
       <h2>Login</h2>
       <?php
-      // Display the error message if it's set
       if (isset($error_message)) {
         echo "<p style='color: red;'>$error_message</p>";
       }
