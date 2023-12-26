@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <li><a href="accueil.php">Accueil</a></li>
           <li><a href="Untitled-1.php">Nos Produits</a></li>
           <li><a href="#">Actualités</a></li>
-          <li><a href="#" class="fa fa-shopping-cart"> panier</a></li>
+          <li><a href="#" class="fa fa-shopping-cart"> </a></li>
         </ul>
       </nav>
     </div>

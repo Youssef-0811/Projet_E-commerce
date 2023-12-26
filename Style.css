@@ -399,7 +399,7 @@ transition: transform .5s
   color: #fff;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
+  cursor:pointer;
 }
 .login-form a:hover{
   background-color: #21ff15;
@@ -410,7 +410,7 @@ transition: transform .5s
   display: inline-block;
 }
 .user-menu {
-  margin-right: 10px; /* Adjusted margin */
+  margin-right: 200px; /* Adjusted margin */
 }
 .user-info img {
   width: 32px; /* Set the desired width */
@@ -534,16 +534,17 @@ transition: transform .5s
   background-color: #357834;
 }
 .user-dropdown {
-  position: relative;
+  position:inherit;
   display: inline-block;
 }
 .user-menu {
   margin-right: 10px; /* Adjusted margin */
+  cursor: pointer;
 }
 .user-info img {
   width: 32px; /* Set the desired width */
   height: 32px; /* Set the desired height */
-  border-radius: 50%; /* Optional: Make it a circle */
+  border-radius: 60%; /* Optional: Make it a circle */
 }
 
 .user-info span {

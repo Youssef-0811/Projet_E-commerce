@@ -35,7 +35,40 @@
       });
     });
   </script>
+  <style>
+    .clear-cart-btn {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
+    .clear-cart-btn:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+  <style>
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .cart-item img {
+      max-width: 50px;
+      margin-right: 10px;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
 
 
 
@@ -80,11 +113,151 @@
   <!-- Panier Section -->
   <section class="cart">
     <h2>Shopping Cart</h2>
-    <p id="empty-cart-message">No products selected.</p>
-    <ul id="cart-list"></ul>
-    <p id="total-price">Total: 0DH</p>
-    <a href="Produits.php">Back to Products</a>
-    <button id="pay-button" style="display: none;">Proceed to Pay</button>
+    <div id="cartDetails">
+      <div id="cart-list"></div>
+
+
+
+
+
+
+      <!-- Modify the displayCartDetails function in your panier.php page -->
+      <script>
+        function displayCartDetails() {
+          // Retrieve the cart items from localStorage
+          var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+          // Get the element where you want to display the cart details
+          var cartListElement = document.getElementById('cart-list');
+
+          // Clear the existing content
+          cartListElement.innerHTML = '';
+
+          // Check if the cart is not empty
+          if (cartItems.length > 0) {
+            // Loop through cart items and display details
+            cartItems.forEach(function(item) {
+              // Check if the price property exists before calling toFixed
+              var priceDisplay = item.price ? +item.price.toFixed(2) : +'DH';
+
+              // Create a list item for each product
+              var listItem = document.createElement('li');
+              listItem.innerHTML = `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <p>${item.name}.         Price: ${priceDisplay}</p>
+                        
+                        
+                    </div>
+                    <button onclick="removeFromCart('${item.name}')">Remove</button>
+                    <hr>
+                `;
+
+              // Append the list item to the cart list
+              cartListElement.appendChild(listItem);
+            });
+
+            // Display the total price
+            var totalPrice = cartItems.reduce(function(sum, item) {
+              return sum + (item.price || 0); // Make sure to handle undefined or null values
+            }, 0);
+            var totalPriceDisplay = totalPrice ? 'DH' + totalPrice.toFixed(2) : '';
+            cartListElement.innerHTML += `<p>Total Price: ${totalPrice} DH</p>`;
+          } else {
+            // Display a message if the cart is empty
+            cartListElement.innerHTML = '<p>Your cart is empty</p>';
+          }
+        }
+
+        function removeFromCart(productName) {
+          // Retrieve the cart items from localStorage
+          var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+          // Find the index of the product with the given name in the cart
+          var indexToRemove = -1;
+          for (var i = 0; i < cartItems.length; i++) {
+            if (cartItems[i].name === productName) {
+              indexToRemove = i;
+              break;
+            }
+          }
+
+          // If the product is found in the cart
+          if (indexToRemove !== -1) {
+            // If there is more than one quantity, reduce the quantity
+            if (cartItems[indexToRemove].quantity > 1) {
+              cartItems[indexToRemove].quantity -= 1;
+            } else {
+              // If there is only one quantity, remove the entire item from the cart
+              cartItems.splice(indexToRemove, 1);
+            }
+
+            // Update the cart items in localStorage
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            // Refresh the cart details on the page
+            displayCartDetails();
+          }
+        }
+
+        // Initial display of cart details when the page loads
+        displayCartDetails();
+      </script>
+
+
+
+
+
+
+    </div>
+
+    <button id="pay-button" class="pay-button">Proceed to Pay</button>
+    <a href="Produits.php" class="back-to-products-link">Back to Products</a>
+
+
+    <style>
+      .back-to-products-link {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+      }
+
+      .back-to-products-link:hover {
+        background-color: #45a049;
+      }
+
+      .pay-button {
+        background-color: #008CBA;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .pay-button:hover {
+        background-color: #0077A3;
+      }
+    </style>
+    <button onclick="clearCart()" class="clear-cart-btn">Clear Cart</button>
+
+    <script>
+      // Function to clear the cart
+      function clearCart() {
+        // Clear the cart in localStorage
+        localStorage.removeItem('cart');
+
+        // Refresh the cart details on the page
+        displayCartDetails();
+      }
+    </script>
   </section>
 
   <!-- <script defer src="script.js"></script> -->

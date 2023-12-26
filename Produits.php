@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"   />
-
   <title>CLOCK</title>
   <link rel="stylesheet" href="Style.css">
   <script>
@@ -73,7 +72,6 @@
               echo "<div class='user-dropdown'>";
               echo "<span>" . $_SESSION['user_name'] . "</span>";
               echo "<div class='dropdown-content'>";
-              echo "<a href='#'>Modify Information</a>";
               echo "<a href='logout.php'>Se déconnecter</a>";
               echo "</div>";
               echo "</div>";
@@ -92,6 +90,97 @@
 
   <main>
     <h1 class="produits_txt"> Nos Produits</h1>
+
+
+
+
+
+
+
+    <script>
+      var cart = [];
+
+      function addToCart(productName, productPrice, productImage) {
+        // Retrieve existing cart data from localStorage
+        var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add the new product to the cart
+        var newProduct = {
+          name: productName,
+          price: productPrice,
+          image: productImage
+        };
+        cart.push(newProduct);
+
+        // Save the updated cart back to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Log the updated cart
+        console.log('Cart:', cart);
+      }
+      // Check if the user is logged in using AJAX
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "check_login.php", true);
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+
+          console.log('Login Response:', response); // Debugging statement
+
+          if (response.loggedIn) {
+            // User is logged in, add the product to the cart
+            addToCartLocally(product);
+            console.log('Product added to cart');
+          } else {
+            // User is not logged in, redirect to the login page
+            window.location.href = 'login.php';
+          }
+        }
+      };
+
+      xhr.send();
+
+      function addToCartLocally(product) {
+        // Retrieve existing cart items from localStorage
+        var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        console.log('Existing Cart Items:', cartItems); // Debugging statement
+
+        // Add the new product to the cart
+        cartItems.push(product);
+
+        console.log('Updated Cart Items:', cartItems); // Debugging statement
+
+        // Convert the updated cart items back to a string and store in localStorage
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+        console.log('Cart updated successfully'); // Debugging statement
+
+        // Refresh the cart details on the page
+        displayCartDetails();
+      }
+
+      function displayCartDetails() {
+        // You can customize this function based on your UI
+        // For example, update a cart icon, show a mini cart, etc.
+        console.log('Cart details displayed');
+      }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <section class="products_section">
       <div class="Produits">
 
@@ -103,7 +192,7 @@
           <div class="box">
             <div class="prix">300DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Souris Gamer', 300, 'img/IMG-20231207-WA0036.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -117,7 +206,7 @@
           <div class="box">
             <div class="prix">300Dh</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Clavier', 300, 'img/Clavier1.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -131,7 +220,7 @@
           <div class="box">
             <div class="prix">1200DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Ecran PC', 1200, 'img/Ecran1.jpg')">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -144,7 +233,7 @@
           <div class="box">
             <div class="prix">500DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smart-Watch', 500, 'img/IMG-20231207-WA0033.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -158,7 +247,7 @@
           <div class="box">
             <div class="prix">5000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 5000, 'img/PC1.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -172,7 +261,7 @@
           <div class="box">
             <div class="prix">800DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Imprimante', 800, 'IMG/WhatsApp Image 2023-12-07 à 14.02.43_ab170b2f.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -186,7 +275,7 @@
           <div class="box">
             <div class="prix">3000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('RTX', 3000, 'img/RTX.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -201,7 +290,7 @@
           <div class="box">
             <div class="prix">8000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('PC-Portable', 8000, 'img/PCportable1.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -216,7 +305,7 @@
           <div class="box">
             <div class="prix">5500DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 5500, 'img/TourPC3.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -231,7 +320,7 @@
           <div class="box">
             <div class="prix">3500DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -247,7 +336,7 @@
           <div class="box">
             <div class="prix">1000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Clavier+Souris', 600, 'img/Souris&Clavier.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -263,7 +352,7 @@
           <div class="box">
             <div class="prix">7000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 7000, 'img/TourPC2.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -277,7 +366,7 @@
           <div class="box">
             <div class="prix">500DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('HeadPhones', 500, 'img/IMG-20231207-WA0034.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -291,7 +380,7 @@
           <div class="box">
             <div class="prix">1000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -305,7 +394,7 @@
           <div class="box">
             <div class="prix">1000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -319,7 +408,7 @@
           <div class="box">
             <div class="prix">1000DH</div>
             <div class="product-details">
-              <button class="add-to-cart-btn" data-product-id="1" data-product-name="Smartphone" data-product-price="1000" data-product-image="IMG-20231207-WA0035.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
             </div>
           </div>
@@ -328,26 +417,7 @@
       </div>
     </section>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
-        addToCartButtons.forEach(function(button) {
-          button.addEventListener('click', function() {
-            // Check if the user is logged in
-            <?php
-            if (isset($_SESSION['user_name'])) {
-              // If logged in, add the product to the cart using JavaScript or make an AJAX call to the server
-              echo "console.log('Product added to cart');";
-            } else {
-              // If not logged in, redirect to the login page
-              echo "window.location.href = 'login.php';";
-            }
-            ?>
-          });
-        });
-      });
-    </script>
 
     <section class="contact" id="contact">
       <div class="card">
@@ -415,58 +485,6 @@
             });
           });
         });
-        // document.addEventListener('DOMContentLoaded', function() {
-        //   const cartList = document.getElementById('cart-list');
-        //   const emptyCartMessage = document.getElementById('empty-cart-message');
-        //   const totalPriceElement = document.getElementById('total-price');
-        //   const payButton = document.getElementById('pay-button');
-
-        //   // Retrieve cart data from localStorage
-        //   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        //   // Update cart display
-        //   function updateCart() {
-        //     cartList.innerHTML = '';
-        //     if (cart.length === 0) {
-        //       emptyCartMessage.style.display = 'block';
-        //       payButton.style.display = 'none';
-        //     } else {
-        //       emptyCartMessage.style.display = 'none';
-        //       payButton.style.display = 'block';
-
-        //       let total = 0;
-        //       cart.forEach(product => {
-        //         const listItem = document.createElement('li');
-        //         listItem.innerHTML = `<span>${product.name}</span><span>${product.price}DH</span>`;
-        //         cartList.appendChild(listItem);
-        //         total += product.price;
-        //       });
-
-        //       totalPriceElement.textContent = `Total: ${total}DH`;
-        //     }
-        //   }
-
-        //   // Event listener for "Add to Cart" buttons
-        //   document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        //     button.addEventListener('click', function() {
-        //       const productContainer = button.closest('.product-item');
-        //       const product = {
-        //         name: productContainer.querySelector('h3').textContent,
-        //         price: parseFloat(productContainer.querySelector('h4').textContent),
-        //       };
-
-        //       // Add product to cart and update localStorage
-        //       cart.push(product);
-        //       localStorage.setItem('cart', JSON.stringify(cart));
-
-        //       // Update cart display
-        //       updateCart();
-        //     });
-        //   });
-
-        //   // Initial update of the cart display
-        //   updateCart();
-        // });
       </script>
 
 </body>
@@ -701,3 +719,80 @@
     </ul>
   </div>
 </section> -->
+
+
+
+
+<!-- <script>
+        // document.addEventListener("DOMContentLoaded", function() {
+        //   var addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+        //   addToCartButtons.forEach(function(button) {
+        //     button.addEventListener('click', function() {
+        //       // Check if the user is logged in
+        //       <?php
+                  //       if (isset($_SESSION['user_name'])) {
+                  //         // If logged in, add the product to the cart using JavaScript or make an AJAX call to the server
+                  //         echo "console.log('Product added to cart');";
+                  //       } else {
+                  //         // If not logged in, redirect to the login page
+                  //         echo "window.location.href = 'login.php';";
+                  //       }
+                  //       
+                  ?>
+        //     });
+        //   });
+        // });
+        document.addEventListener('DOMContentLoaded', function() {
+          const cartList = document.getElementById('cart-list');
+          const emptyCartMessage = document.getElementById('empty-cart-message');
+          const totalPriceElement = document.getElementById('total-price');
+          const payButton = document.getElementById('pay-button');
+
+          // Retrieve cart data from localStorage
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+          // Update cart display
+          function updateCart() {
+            cartList.innerHTML = '';
+            if (cart.length === 0) {
+              emptyCartMessage.style.display = 'block';
+              payButton.style.display = 'none';
+            } else {
+              emptyCartMessage.style.display = 'none';
+              payButton.style.display = 'block';
+
+              let total = 0;
+              cart.forEach(product => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<span>${product.name}</span><span>${product.price}DH</span>`;
+                cartList.appendChild(listItem);
+                total += product.price;
+              });
+
+              totalPriceElement.textContent = `Total: ${total}DH`;
+            }
+          }
+
+          // Event listener for "Add to Cart" buttons
+          document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function() {
+              const productContainer = button.closest('.product-item');
+              const product = {
+                name: productContainer.querySelector('h3').textContent,
+                price: parseFloat(productContainer.querySelector('h4').textContent),
+              };
+
+              // Add product to cart and update localStorage
+              cart.push(product);
+              localStorage.setItem('cart', JSON.stringify(cart));
+
+              // Update cart display
+              updateCart();
+            });
+          });
+
+          // Initial update of the cart display
+          updateCart();
+        });
+      </script> -->

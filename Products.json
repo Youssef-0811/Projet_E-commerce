@@ -1,0 +1,113 @@
+[
+    {
+        "id": 1,
+        "name":"Souris Gamer",
+        "price": 300,
+        "image": "img/IMG-20231207-WA0036.jpg"
+    },
+    {
+        "id": 2,
+        "name":" Clavier",
+        "price": 300,
+        "description":"Description",
+        "image": "img/Clavier1.jpg"
+    },
+    {
+        "id": 3,
+        "name":" Ecran PC",
+        "price": 1200,
+        "description":"Description",
+        "image": "img/Ecran1.jpg"
+    },
+    {
+        "id": 4,
+        "name":" Smart-Watch",
+        "price": 800,
+        "description":"Description",
+        "image": "img/IMG-20231207-WA0033.jpg"
+    },
+    {
+        "id": 5,
+        "name":" Tour PC",
+        "price": 5000,
+        "description":"Description",
+        "image": "img/TourPC2.jpg"
+    },
+    {
+        "id": 6,
+        "name":" Imprimante",
+        "price": 800,
+        "description":"Description",
+        "image": "img/WhatsApp Image 2023-12-07 à 14.02.43_ab170b2f.jpg"
+    },
+    {
+        "id": 7,
+        "name":" RTX",
+        "price": 3000,
+        "description":"Description",
+        "image": "img/RTX.jpg"
+    },
+    {
+        "id": 8,
+        "name":"PC-Portable",
+        "price": 8000,
+        "description":"Description",
+        "image": "img/PCportable.jpg"
+    },
+    {
+        "id": 9,
+        "name":" Tour PC",
+        "price": 7500,
+        "description":"Description",
+        "image": "img/TourPC1.jpg"
+    },
+    {
+        "id": 10,
+        "name":" Smartphone",
+        "price": 3500,
+        "description":"Description",
+        "image": "img/IMG-20231207-WA0035.jpg"
+    },
+    {
+        "id": 11,
+        "name":" Clavier + Souris",
+        "price": 900,
+        "description":"Description",
+        "image": "img/Souris&Clavier.jpg"
+    },
+    {
+        "id": 12,
+        "name":" Tour PC",
+        "price": 7000,
+        "description":"Description",
+        "image": "img/TourPC3.jpg"
+    },
+    {
+        "id": 13,
+        "name":" HeadPhones",
+        "price": 550,
+        "description":"Description",
+        "image": "img/IMG-20231207-WA0034.jpg"
+    },
+    {
+        "id": 14,
+        "name":" Clavier + Souris",
+        "price": 900,
+        "description":"Description",
+        "image": "img/Souris&Clavier.jpg"
+    },
+    {
+        "id": 15,
+        "name":" Ecran PC",
+        "price": 1200,
+        "description":"Description",
+        "image": "img/Ecran1.jpg"
+    },
+    {
+        "id": 16,
+        "name":" Imprimante",
+        "price": 800,
+        "description":"Description",
+        "image": "img/WhatsApp Image 2023-12-07 à 14.02.43_ab170b2f.jpg"
+    }
+]

@@ -75,7 +75,7 @@
     </nav>
   </div>
   <section class="bda">
-    <h1>decouvrir nos nouveaus produits avec de meilleur qualite</h1>
+    <h1>Decouvrez nos nouveaux produits avec la meilleur qualité.</h1>
     <a href="Produits.php"> <button>DECOUVRIR</button></a>
 
 
