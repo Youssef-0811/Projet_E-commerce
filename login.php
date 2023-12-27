@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Check if the user is logged in
             if (isset($_SESSION['user_name'])) {
               echo "<div class='user-info'>";
-              echo "<img src='user_icon.png' alt='User Icon'>"; // Replace 'user_icon.png' with the actual path to your user icon
+              echo "<img src='img/user_icon.jpg' alt='User Icon'>"; // Replace 'user_icon.png' with the actual path to your user icon
               echo "<div class='user-dropdown'>";
               echo "<span>" . $_SESSION['user_name'] . "</span>";
               echo "<div class='dropdown-content'>";

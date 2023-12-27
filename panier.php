@@ -1,3 +1,18 @@
+<?php
+// Start the session to access session variables
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['user_name'])) {
+  // Redirect the user to the login page
+  header("Location: login.php");
+  exit(); // Ensure that the script stops here
+}
+
+// Reste du code pour afficher le panier...
+
+// Mettez ici le reste du code de votre fichier panier.php
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -88,7 +103,6 @@
         <li class="user-menu">
           <?php
           // Start the session to access session variables
-          session_start();
 
           // Check if the user is logged in
           if (isset($_SESSION['user_name'])) {
@@ -149,7 +163,7 @@
                         
                         
                     </div>
-                    <button onclick="removeFromCart('${item.name}')">Remove</button>
+                    <button onclick="removeFromCart('${item.name}')" class="btn_remove">Remove</button>
                     <hr>
                 `;
 
@@ -210,8 +224,14 @@
 
 
     </div>
+    <a href="pay.php" onclick="clearCartOnPayment()"><button id="pay-button" class="pay-button">Proceed to Pay</button></a>
+    <script>
+      function clearCartOnPayment() {
+        // Clear the cart in localStorage
+        localStorage.removeItem('cart');
+      }
+    </script>
 
-    <button id="pay-button" class="pay-button">Proceed to Pay</button>
     <a href="Produits.php" class="back-to-products-link">Back to Products</a>
 
 
@@ -244,6 +264,20 @@
 
       .pay-button:hover {
         background-color: #0077A3;
+      }
+
+      .btn_remove {
+        background-color: red;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .btn_remove:hover {
+        background-color: #f8512f;
       }
     </style>
     <button onclick="clearCart()" class="clear-cart-btn">Clear Cart</button>
