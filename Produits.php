@@ -87,7 +87,50 @@
       </nav>
     </div>
   </header>
+  <style>
+    .searchbar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      margin-left: 110px;
+      /* Ajouter cette ligne pour l'espace à gauche */
 
+    }
+
+    #searchInput {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+
+    #searchInput::placeholder {
+      color: #999;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <section class="searchbar">
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="searchProducts()">Search</button>
+  </section>
+  <!-- "Not found" message -->
+  <div id="notFoundMessage" style="display: none;">No results found.</div>
+
+  <script src="script.js"></script>
   <main>
     <h1 class="produits_txt"> Nos Produits</h1>
 
@@ -189,40 +232,61 @@
 
           <div class="Titre">Souris Gamer</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">300DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Souris Gamer', 300, 'img/IMG-20231207-WA0036.jpg')">Add to Cart</button>
-
-            </div>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
           </div>
+          <div class="prix">300DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Souris Gamer', 300, 'img/IMG-20231207-WA0036.jpg')">Add to Cart</button>
+
+          </div>
+
         </div>
 
 
         <div class="carte">
           <div class="img"><img src="img/Clavier1.jpg"></div>
           <div class="Titre">Clavier</div>
-          <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">300Dh</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Clavier', 300, 'img/Clavier1.jpg')">Add to Cart</button>
+          <div class="Desc"> Description </div>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
 
-            </div>
+          <div class="prix">300Dh</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Clavier', 300, 'img/Clavier1.jpg')">Add to Cart</button>
           </div>
         </div>
+
+
+
+
 
         <div class="carte">
           <div class="img"><img src="img/Ecran1.jpg"></div>
 
           <div class="Titre">Ecran PC</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">1200DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Ecran PC', 1200, 'img/Ecran1.jpg')">Add to Cart</button>
-            </div>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
           </div>
+          <div class="prix">1200DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Ecran PC', 1200, 'img/Ecran1.jpg')">Add to Cart</button>
+          </div>
+
         </div>
 
         <div class="carte">
@@ -230,12 +294,17 @@
 
           <div class="Titre">Smart-Watch</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">500DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smart-Watch', 500, 'img/IMG-20231207-WA0033.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">500DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smart-Watch', 500, 'img/IMG-20231207-WA0033.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -244,12 +313,17 @@
 
           <div class="Titre">Tour PC</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">5000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 5000, 'img/PC1.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">5000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 5000, 'img/PC1.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -258,12 +332,17 @@
 
           <div class="Titre">Imprimante</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">800DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Imprimante', 800, 'IMG/WhatsApp Image 2023-12-07 à 14.02.43_ab170b2f.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">800DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Imprimante', 800, 'IMG/WhatsApp Image 2023-12-07 à 14.02.43_ab170b2f.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -272,12 +351,17 @@
 
           <div class="Titre">RTX</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">3000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('RTX', 3000, 'img/RTX.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">3000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('RTX', 3000, 'img/RTX.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -287,12 +371,17 @@
 
           <div class="Titre">PC-Portable</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">8000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('PC-Portable', 8000, 'img/PCportable1.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">8000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('PC-Portable', 8000, 'img/PCportable1.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -302,12 +391,17 @@
 
           <div class="Titre">Tour PC</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">5500DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 5500, 'img/TourPC3.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">5500DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 5500, 'img/TourPC3.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -317,13 +411,19 @@
 
           <div class="Titre">Smartphone</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">3500DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
-
-            </div>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="far fa-star"></span> +550 ventes
           </div>
+          <div class="prix">3500DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
+
+          </div>
+
         </div>
 
 
@@ -333,12 +433,17 @@
 
           <div class="Titre">Clavier+Souris</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">1000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Clavier+Souris', 600, 'img/Souris&Clavier.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star-half"></span>+1000ventes
 
-            </div>
+          </div>
+          <div class="prix">1000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Clavier+Souris', 600, 'img/Souris&Clavier.jpg')">Add to Cart</button>
+
           </div>
         </div>
 
@@ -349,12 +454,17 @@
 
           <div class="Titre">Tour PC</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">7000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 7000, 'img/TourPC2.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">7000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 7000, 'img/TourPC2.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -363,12 +473,17 @@
 
           <div class="Titre">HeadPhones</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">500DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('HeadPhones', 500, 'img/IMG-20231207-WA0034.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">500DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('HeadPhones', 500, 'img/IMG-20231207-WA0034.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -377,12 +492,17 @@
 
           <div class="Titre">Smartphone</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">1000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">1000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -391,12 +511,17 @@
 
           <div class="Titre">Smartphone</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">1000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">1000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 
@@ -405,12 +530,17 @@
 
           <div class="Titre">Smartphone</div>
           <div class="Desc">Description</div>
-          <div class="box">
-            <div class="prix">1000DH</div>
-            <div class="product-details">
-              <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
+          <div class="etoiles">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span> +500 vendus
+          </div>
+          <div class="prix">1000DH</div>
+          <div class="product-details">
+            <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
-            </div>
           </div>
         </div>
 

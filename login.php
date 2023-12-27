@@ -84,9 +84,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <H2 class="LOGO">Clock Tower.com</H2>
         <ul>
           <li><a href="accueil.php">Accueil</a></li>
-          <li><a href="Untitled-1.php">Nos Produits</a></li>
+          <li><a href="Produits.php">Nos Produits</a></li>
           <li><a href="#">Actualités</a></li>
-          <li><a href="#" class="fa fa-shopping-cart"> </a></li>
+          <li><a href="panier.php" class="fa fa-shopping-cart"> </a></li>
           <li class="user-menu">
             <?php
             // Start the session to access session variables

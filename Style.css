@@ -786,6 +786,49 @@ transition: transform .5s
 } */
 
 
+/* Ajoutez ces styles à la fin de votre fichier CSS */
+
+.carte {
+  display: grid;
+  grid-template-areas:
+    "img"
+    "Titre"
+    "Desc"
+    "qualite"
+    "prix"
+    "product-details";
+}
+
+
+
+
+.etoiles {
+  display: flex;
+  align-items: center;
+}
+
+.etoiles .fa {
+  font-size: 16px; /* Ajustez la taille selon vos besoins */
+  color: gold; /* Couleur des étoiles */
+  text-shadow: 0 0 2px #000; /* Ajoute un contour noir autour des étoiles */
+
+}
+
+/* La classe fa-star-half représente une demi-étoile */
+.fa-star-half:before {
+  content: '\f089'; /* Code de caractère pour une demi-étoile */
+  text-shadow: 0 0 2px #000; /* Ajoute un contour noir autour des étoiles */
+
+}
+.etoiles .far {
+  font-size: 16px; /* Ajustez la taille selon vos besoins */
+  color: #ccc; /* Couleur des étoiles vides */
+  text-shadow: 0 0 2px #000; /* Ajoute un contour noir autour des étoiles */
+
+}
+
+/* Ajoutez des styles supplémentaires selon vos besoins */
+
 
 
 
