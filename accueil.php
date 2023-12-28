@@ -42,7 +42,7 @@
 <header>
   <div class="container">
     <nav>
-      <H2 class="LOGO">Clock Tower.com</H2>
+      <H2 class="LGO">Clock Tower.com</H2>
       <ul>
         <li><a href="#">Accueil</a></li>
         <li><a href="Produits.php">Nos Produits</a></li>

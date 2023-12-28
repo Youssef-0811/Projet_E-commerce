@@ -97,6 +97,13 @@
         "image": "img/Souris&Clavier.jpg"
     },
     {
+        "id": 14,
+        "name":" Classic Analog Watch",
+        "price": 499.99,
+        "description":"Description",
+        "image": "img/ClassicAnalogWatch.jpg"
+    },
+    {
         "id": 15,
         "name":" Ecran PC",
         "price": 1200,

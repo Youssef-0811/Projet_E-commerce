@@ -12,8 +12,9 @@
     line-height: 1.6;
     color: #000000;
   }
-  .LOGO{
+  .LGO{
     color:#ffffff;
+    padding-left: 30px;
   }
   /* Header styles */
   header {
@@ -175,7 +176,8 @@ transition: transform .5s
 
   .products img {
     max-width: 100%;
-    height: 300px;
+    max-height: 200px; /* Set a fixed height for all images */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
     border: 1px solid #ddd;
     border-radius: 5px;
   }
@@ -693,7 +695,7 @@ transition: transform .5s
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #ededed;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px;
@@ -705,7 +707,7 @@ transition: transform .5s
 }
 
 .cart {
-  background-color: #f8f8f8;
+  background-color: #ededed;
   padding: 20px;
   border: 1px solid #ddd;
   margin-top: 20px;
@@ -925,6 +927,25 @@ color: #ffffff;
 
 
 
+  #categoryDropdown {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 121px;
+  }
+
+  /* Style the options inside the dropdown */
+  #categoryDropdown option {
+    background-color: #fff;
+    color: #333;
+  }
+
+  /* Style the selected option */
+  #categoryDropdown option:checked {
+    background-color: #007bff;
+    color: #fff;
+  }
 
 
 
@@ -934,7 +955,6 @@ color: #ffffff;
 
 
 
-  
   body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -963,7 +983,7 @@ form {
 
 label {
     margin-bottom: 8px;
-    color: #555;
+    color:#9e9ea7;
 }
 
 input {

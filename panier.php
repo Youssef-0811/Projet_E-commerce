@@ -93,7 +93,7 @@ if (!isset($_SESSION['user_name'])) {
 <header>
   <div class="container">
     <nav>
-      <H2 class="LOGO">Clock Tower.com</H2>
+      <H2 class="LGO">Clock Tower.com</H2>
       <ul>
         <li><a href="accueil.php">Accueil</a></li>
         <li><a href="Produits.php">Nos Produits</a></li>
@@ -157,15 +157,13 @@ if (!isset($_SESSION['user_name'])) {
               // Create a list item for each product
               var listItem = document.createElement('li');
               listItem.innerHTML = `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                        <p>${item.name}.         Price: ${priceDisplay}</p>
-                        
-                        
-                    </div>
-                    <button onclick="removeFromCart('${item.name}')" class="btn_remove">Remove</button>
-                    <hr>
-                `;
+   <div class="cart-item">
+      <img src="${item.image}" alt="${item.name}" class="cart-item-image" style="width: 50px; height: 50px;">
+      <p>${item.name}. Price: ${priceDisplay}</p>
+   </div>
+   <button onclick="removeFromCart('${item.name}')" class="btn_remove">Remove</button>
+   <hr>
+`;
 
               // Append the list item to the cart list
               cartListElement.appendChild(listItem);

@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
 
       <nav>
-        <H2 class="LOGO">Clock Tower.com</H2>
+        <H2 class="LGO">Clock Tower.com</H2>
         <ul>
           <li><a href="accueil.php">Accueil</a></li>
           <li><a href="Produits.php">Nos Produits</a></li>
