@@ -126,6 +126,77 @@
     }
   </style>
 
+  <script>
+    var cart = [];
+
+    function addToCart(productName, productPrice, productImage) {
+      // Retrieve existing cart data from localStorage
+      var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Add the new product to the cart
+      var newProduct = {
+        name: productName,
+        price: productPrice,
+        image: productImage
+      };
+      cart.push(newProduct);
+
+      // Save the updated cart back to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Log the updated cart
+      console.log('Cart:', cart);
+    }
+    // Check if the user is logged in using AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "check_login.php", true);
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+
+        console.log('Login Response:', response); // Debugging statement
+
+        if (response.loggedIn) {
+          // User is logged in, add the product to the cart
+          addToCartLocally(product);
+          console.log('Product added to cart');
+        } else {
+          // User is not logged in, redirect to the login page
+          window.location.href = 'login.php';
+        }
+      }
+    };
+
+    xhr.send();
+
+    function addToCartLocally(product) {
+      // Retrieve existing cart items from localStorage
+      var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      console.log('Existing Cart Items:', cartItems); // Debugging statement
+
+      // Add the new product to the cart
+      cartItems.push(product);
+
+      console.log('Updated Cart Items:', cartItems); // Debugging statement
+
+      // Convert the updated cart items back to a string and store in localStorage
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      console.log('Cart updated successfully'); // Debugging statement
+
+      // Refresh the cart details on the page
+      displayCartDetails();
+    }
+
+    function displayCartDetails() {
+      // You can customize this function based on your UI
+      // For example, update a cart icon, show a mini cart, etc.
+      console.log('Cart details displayed');
+    }
+  </script>
+
 
 
 
@@ -273,6 +344,8 @@
     <option value="Electronics">Electronics</option>
     <option value="Accessories">Accessories</option>
     <option value="Gaming">Gaming</option>
+    <option value="Home and Kitchen">Home and Kitchen</option>
+
     <!-- Add more categories as needed -->
   </select>
 
@@ -283,7 +356,7 @@
     <div class="Produits">
 
 
-      <div class="carte" data-category="Gaming">
+      <div class="carte" data-category="Gaming" data-category="Electronics">
         <div class="img"><img src="img/IMG-20231207-WA0036.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">Souris Gamer</div>
@@ -302,6 +375,24 @@
 
         </div>
 
+      </div>
+
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/cuisinebot.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">CuisineBot</div>
+        <div class="Desc">Multifunctional kitchen robot for quick and easy meal preparations.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +500 sold
+        </div>
+        <div class="prix">799.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick=" console.log('Button Clicked!'); addToCart('CuisineBot', 799.99, 'img/cuisinebot.jpg')">Add to Cart</button>
+        </div>
       </div>
 
       <div class="carte" data-category="Accessories">
@@ -323,7 +414,7 @@
       </div>
 
 
-      <div class="carte" data-category="Electronics">
+      <div class="carte" data-category="Electronics" data-category="Accessories">
         <div class="img"><img src="img/Clavier1.jpg"></div>
         <div class="Titre" style="font-weight: bold;">Key-pad</div>
         <div class="Desc"> Boost productivity with our customizable key-pad.</div>
@@ -346,7 +437,7 @@
 
 
 
-      <div class="carte">
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="img/Ecran1.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">Display Screen</div>
@@ -366,7 +457,7 @@
 
       </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="img/IMG-20231207-WA0033.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">Smart-Watch</div>
@@ -386,7 +477,7 @@
         </div>
       </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="img/Wireless Bluetooth Earbuds.jpg"></div>
         <div class="Titre" style="font-weight: bold;">Wireless Bluetooth Earbuds</div>
         <div class="Desc">Enjoy wireless freedom and clear sound on the go.</div>
@@ -404,8 +495,25 @@
         </div>
       </div>
 
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/caffepro.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">CaféPro</div>
+        <div class="Desc">Automatic coffee machine for perfect caffeinated moments.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +300 sold
+        </div>
+        <div class="prix">649.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('CaféPro', 649.99, 'img/caffepro.jpg')">Add to Cart</button>
+        </div>
+      </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="img/PC1.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">PC Tower</div>
@@ -424,7 +532,7 @@
 
         </div>
       </div>
-      <div class="carte">
+      <div class="carte" data-category="Electronics" data-category="Accessories">
         <div class="img"><img src="img/Portable Coffee Maker.jpg"></div>
         <div class="Titre" style="font-weight: bold;">Portable Coffee Maker</div>
         <div class="Desc">A compact and portable coffee maker for on-the-go coffee lovers.</div>
@@ -442,8 +550,25 @@
         </div>
       </div>
 
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/aspitech.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">AspiTech</div>
+        <div class="Desc">Intelligent robot vacuum that cleans your home in a blink.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +400 sold
+        </div>
+        <div class="prix">899.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('AspiTech', 899.99, 'img/aspitech.jpg')">Add to Cart</button>
+        </div>
+      </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="IMG/WhatsApp Image 2023-12-07 à 14.02.43_ab170b2f.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">Printer</div>
@@ -463,10 +588,28 @@
         </div>
       </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/MixMax.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">MixMax</div>
+        <div class="Desc">High-performance blender for perfectly blended smoothies and soups.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +250 sold
+        </div>
+        <div class="prix">349.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('MixMax', 349.99, 'img/MixMax.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="carte" data-category="Electronics" data-category="Accessories">
         <div class="img"><img src="img/Smart LED Desk Lamp.jpg"></div>
         <div class="Titre" style="font-weight: bold;">Smart LED Desk Lamp</div>
-        <div class="Desc">Illuminate your workspace smartly.</div>
+        <div class="Desc">Illuminate your workspace intelligently with sleek and smart lighting..</div>
         <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
@@ -481,8 +624,45 @@
         </div>
       </div>
 
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/SmartScale.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">SmartScale</div>
+        <div class="Desc">Smart kitchen scale for precise measurements.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +150 sold
+        </div>
+        <div class="prix">129.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('SmartScale', 129.99, 'img/SmartScale.jpg')">Add to Cart</button>
+        </div>
+      </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/CuisinePro.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">CuisinePro</div>
+        <div class="Desc">Set of stainless steel kitchen utensils for high-quality cooking.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +200 sold
+        </div>
+        <div class="prix">179.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('CuisinePro', 179.99, 'img/CuisinePro.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+
+
+      <div class="carte" data-category="Gaming" data-category="Electronics">
         <div class="img"><img src="img/RTX.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">RTX PC</div>
@@ -502,11 +682,28 @@
         </div>
       </div>
 
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/JusVita.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">JusVita</div>
+        <div class="Desc">Juice extractor for healthy and delicious drinks.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +300 sold
+        </div>
+        <div class="prix">349.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('JusVita', 349.99, 'img/JusVita.jpg')">Add to Cart</button>
+        </div>
+      </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Gaming" data-category="Electronics">
         <div class="img"><img src="img/PCportable1.jpg"></div>
 
-        <div class="Titre" style="font-weight: bold;">PC-Portable</div>
+        <div class="Titre" style="font-weight: bold;">Laptop</div>
         <div class="Desc">Powerful, portable computing for versatile performance on-the-move</div>
         <br>
         <div class="etoiles">
@@ -523,7 +720,7 @@
         </div>
       </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="img/Fitness Tracker Watch.jpg"></div>
         <div class="Titre" style="font-weight: bold;">Fitness Tracker Watch</div>
         <div class="Desc">Achieve fitness goals with our tracker watch.</div>
@@ -542,11 +739,47 @@
       </div>
 
 
-      <div class="carte">
+      <div class="carte" data-category="Accessories">
+        <div class="img"><img src="img/SunShade.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">SunShade</div>
+        <div class="Desc">Enhance your look with high-end sunglasses for a touch of elegance.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +200 sold
+        </div>
+        <div class="prix">299.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('SunShade', 299.99, 'img/SunShade.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="carte" data-category="Gaming">
+        <div class="img"><img src="img/GamingConsole.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">Gaming Console</div>
+        <div class="Desc">The latest gaming console with cutting-edge graphics and gaming capabilities.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +1000 sold
+        </div>
+        <div class="prix">7499.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('Gaming Console', 7499.99, 'img/GamingConsole.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="img/TourPC3.jpg"></div>
 
-        <div class="Titre" style="font-weight: bold;">Tour PC</div>
-        <div class="Desc">Description</div>
+        <div class="Titre" style="font-weight: bold;">Tower PC</div>
+        <div class="Desc">Sleek Tower PC, unmatched performance, upgradeable versatility.</div>
         <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
@@ -563,11 +796,29 @@
       </div>
 
 
-      <div class="carte">
+      <div class="carte" data-category="Accessories">
+        <div class="img"><img src="img/SafePack.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">SafePack</div>
+        <div class="Desc">Anti-theft backpack with USB charger for safe travels.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +150 sold
+        </div>
+        <div class="prix">379.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('SafePack', 379.99, 'img/SafePack.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="carte" data-category="Electronics">
         <div class="img"><img src="img/IMG-20231207-WA0035.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">Smartphone</div>
-        <div class="Desc">Stay connected with style and functionality.</div>
+        <div class="Desc">Stay effortlessly connected with a blend of style and functionality.</div>
         <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
@@ -576,7 +827,7 @@
           <span class="fa fa-star"></span>
           <span class="far fa-star"></span> +550 ventes
         </div>
-        <div class="prix">3500DH</div>
+        <div class="prix">3500 DH</div>
         <div class="product-details">
           <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
 
@@ -584,13 +835,30 @@
 
       </div>
 
+      <div class="carte" data-category="Bien-être">
+        <div class="img"><img src="img/LightTherapy.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">LightTherapy</div>
+        <div class="Desc">Lampe de luminothérapie pour améliorer votre bien-être mental.</div>
+        <br>
+        <div class="etoiles">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> +80 vendus
+        </div>
+        <div class="prix">199.99 DH</div>
+        <div class="product-details">
+          <button class="add-to-cart-btn" onclick="addToCart('LightTherapy', 199.99, 'img/LightTherapy.jpg')">Add to Cart</button>
+        </div>
+      </div>
 
-
-      <div class="carte">
+      <div class="carte" data-category="Gaming" data-category="Accessories" data-category="Electronics">
         <div class="img"><img src="img/Souris&Clavier.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">Clavier+Souris</div>
         <div class="Desc">Enhance control with our combo.</div>
+        <br>
         <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
@@ -599,7 +867,7 @@
           <span class="fa fa-star-half"></span>+1000ventes
 
         </div>
-        <div class="prix">1000DH</div>
+        <div class="prix">1000 DH</div>
         <div class="product-details">
           <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Clavier+Souris', 600, 'img/Souris&Clavier.jpg')">Add to Cart</button>
 
@@ -608,32 +876,31 @@
 
 
 
-      <div class="carte">
-        <div class="img"><img src="img/TourPC2.jpg"></div>
-
-        <div class="Titre" style="font-weight: bold;">Tour PC</div>
-        <div class="Desc">Description</div>
+      <div class="carte" data-category="Home and Kitchen">
+        <div class="img"><img src="img/Smart Thermostat.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">Smart Thermostat</div>
+        <div class="Desc">Energy-efficient smart thermostat for climate control in your home.</div>
         <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span> +500 vendus
+          <span class="fa fa-star"></span> +300 sold
         </div>
-        <div class="prix">7000DH</div>
+        <div class="prix">699.99 DH</div>
         <div class="product-details">
-          <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Tour PC', 7000, 'img/TourPC2.jpg')">Add to Cart</button>
-
+          <button class="add-to-cart-btn" onclick="addToCart('Smart Thermostat', 699.99, 'img/Smart Thermostat.jpg')">Add to Cart</button>
         </div>
       </div>
 
-      <div class="carte">
+      <div class="carte" data-category="Gaming" data-category="Electronics">
         <div class="img"><img src="img/IMG-20231207-WA0034.jpg"></div>
 
         <div class="Titre" style="font-weight: bold;">HeadPhones</div>
         <div class="Desc">Immerse in superior audio quality.</div>
         <br>
+        <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
@@ -641,72 +908,50 @@
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span> +500 vendus
         </div>
-        <div class="prix">500DH</div>
+        <div class="prix">500 DH</div>
         <div class="product-details">
           <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('HeadPhones', 500, 'img/IMG-20231207-WA0034.jpg')">Add to Cart</button>
 
         </div>
       </div>
 
-      <div class="carte">
-        <div class="img"><img src="img/IMG-20231207-WA0035.jpg"></div>
-
-        <div class="Titre" style="font-weight: bold;">Smartphone</div>
-        <div class="Desc">Description</div>
+      <div class="carte" data-category="Electronics">
+        <div class="img"><img src="img/Smart Home Hub.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">Smart Home Hub</div>
+        <div class="Desc">Centralized device to control and automate smart home devices.</div>
         <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span> +500 vendus
+          <span class="fa fa-star"></span> +250 sold
         </div>
-        <div class="prix">1000DH</div>
+        <div class="prix">549.99 DH</div>
         <div class="product-details">
-          <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
-
+          <button class="add-to-cart-btn" onclick="addToCart('Smart Home Hub', 549.99, 'img/Smart Home Hub.jpg')">Add to Cart</button>
         </div>
       </div>
 
-      <div class="carte">
-        <div class="img"><img src="img/TourPC3.jpg"></div>
-
-        <div class="Titre" style="font-weight: bold;">Smartphone</div>
-        <div class="Desc">Description</div>
+      <div class="carte" data-category="Accessories">
+        <div class="img"><img src="img/Sunglasses.jpg"></div>
+        <div class="Titre" style="font-weight: bold;">Sunglasses</div>
+        <div class="Desc">High-end sunglasses with UV protection for a chic look.</div>
         <br>
         <div class="etoiles">
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span> +500 vendus
+          <span class="fa fa-star"></span> +500 sold
         </div>
-        <div class="prix">1000DH</div>
+        <div class="prix">349.99 DH</div>
         <div class="product-details">
-          <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
-
+          <button class="add-to-cart-btn" onclick="addToCart('Sunglasses', 349.99, 'img/Sunglasses.jpg')">Add to Cart</button>
         </div>
       </div>
 
-      <div class="carte">
-        <div class="img"><img src="img/IMG-20231207-WA0036.jpg"></div>
 
-        <div class="Titre" style="font-weight: bold;">Smartphone</div>
-        <div class="Desc">Description</div>
-        <br>
-        <div class="etoiles">
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span> +500 vendus
-        </div>
-        <div class="prix">1000DH</div>
-        <div class="product-details">
-          <button class="add-to-cart-btn" onclick="console.log('Button Clicked!'); addToCart('Smatphone', 3500, 'img/IMG-20231207-WA0035.jpg')">Add to Cart</button>
-
-        </div>
-      </div>
 
     </div>
   </section>
